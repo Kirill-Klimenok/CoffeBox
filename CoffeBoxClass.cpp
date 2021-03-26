@@ -99,6 +99,7 @@ void CoffeBoxClass::depositMoney()
 
     if (!isTrueMoney(money)) {
         cout << "Error!" << endl << "You have invested a coin of less than 50 kopecks or this bill does not exist" << endl;
+        Sleep(2000);
     }
     else {
         moneyClient += money;
