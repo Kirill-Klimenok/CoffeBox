@@ -2,304 +2,304 @@
 
 void CoffeBoxClass::start()
 {
-    while (isPinTrue) {
+	while (isPinTrue) {
 
-        printMenu();
+		printMenu();
 
-        selectingAnAction(enterData());
-    }
+		selectingAnAction(enterData());
+	}
 
-    cout << "The device is blocked. Please call in  (+375-(29)-***--)" << endl;
+	cout << "The device is blocked. Please call in  (+375-(29)-***--)" << endl;
 }
 
 void CoffeBoxClass::clearConsole() {
-    system("CLS");
+	system("CLS");
 }
 
 
 
 void CoffeBoxClass::printMenu()
 {
-    string menu[] = { "1. Deposit money","2. Espresso","3. Cappuccino","4. Latte","5. Service" };
+	string menu[] = { "1. Deposit money","2. Espresso - ", "3. Cappuccino - ", "4. Latte - ", "5. Service" };
 
-    cout << "Your balance: " << moneyClient << endl << endl;
+	cout << "Your balance: " << moneyClient << endl << endl;
 
-    if (numberCups < 10) cout << "there are " << numberCups << " cups left" << endl << endl;
-    if (numberCups < 0) cout << "There are no cups left!!";
+	if (numberCups < 10 && numberCups > 0) cout << "there are " << numberCups << " cups left" << endl << endl;
+	if (numberCups < 0) cout << "\tWorrning !!!!"<<endl<<"\tNo cups!";
 
-    for (int i = 0; i < size(menu); i++) {
-        cout << menu[i] << endl << endl;
-    }
+	for (int i = 0; i < size(menu); i++) {
+		cout << menu[i] << endl << endl;
+	}
 }
 
 double CoffeBoxClass::enterData()
 {
-    double number = 0;
-    cout << "_: ";
-    cin >> number;
-    cout << endl;
+	double number = 0;
+	cout << "_: ";
+	cin >> number;
+	cout << endl;
 
-    cin.clear();
-    fflush(stdin);
+	cin.clear();
+	fflush(stdin);
 
-    return number;
+	return number;
 }
 
 void CoffeBoxClass::selectingAnAction(double number)
 {
-    switch ((int)number)
-    {
-    case 1: {
-        depositMoney();
+	switch ((int)number)
+	{
+	case 1: {
+		depositMoney();
 
-        clearConsole();
+		clearConsole();
 
-        break;
-    }
-    case 2: {
-        buyCoffee(ESPRESSO_PRICE, "espresso");
+		break;
+	}
+	case 2: {
+		buyCoffee(ESPRESSO_PRICE, "espresso");
 
-        clearConsole();
+		clearConsole();
 
-        break;
-    }
-    case 3: {
-        buyCoffee(CAPPUCCINO_PRICE, "cappuccino");
+		break;
+	}
+	case 3: {
+		buyCoffee(CAPPUCCINO_PRICE, "cappuccino");
 
-        clearConsole();
+		clearConsole();
 
-        break;
-    }
-    case 4: {
+		break;
+	}
+	case 4: {
 
-        buyCoffee(LATTE_PRICE, "latte");
+		buyCoffee(LATTE_PRICE, "latte");
 
-        clearConsole();
+		clearConsole();
 
-        break;
-    }
-    case 5: {
-        managingTheService();
+		break;
+	}
+	case 5: {
+		managingTheService();
 
-        clearConsole();
+		clearConsole();
 
-        break;
-    }
-    default:
-        break;
-    }
+		break;
+	}
+	default:
+		break;
+	}
 }
 
 void CoffeBoxClass::depositMoney()
 {
-    double money = 0;
+	double money = 0;
 
-    cout << "How much money do you want to put on the balance: ";
-    cin >> money;
+	cout << "How much money do you want to put on the balance: ";
+	cin >> money;
 
-    if (!isTrueMoney(money)) {
-        cout << "Error!" << endl << "You have invested a coin of less than 50 kopecks or this bill does not exist" << endl;
-        Sleep(2000);
-    }
-    else {
-        moneyClient += money;
-        moneyCoffeeBox += money;
-    }
+	if (!isTrueMoney(money)) {
+		cout << "Error!" << endl << "You have invested a coin of less than 50 kopecks or this bill does not exist" << endl;
+		Sleep(2000);
+	}
+	else {
+		moneyClient += money;
+		moneyCoffeeBox += money;
+	}
 }
 
 bool CoffeBoxClass::isTrueMoney(double money)
 {
-    if (money < 0) return false;
-    else if (money == 0.5 || money == 1 || money == 2 || money == 5 || money == 10 || money == 20 || money == 50 || money == 100 || money == 200 || money == 500) return true;
-    else return false;
+	if (money < 0) return false;
+	else if (money == 0.5 || money == 1 || money == 2 || money == 5 || money == 10 || money == 20 || money == 50 || money == 100 || money == 200 || money == 500) return true;
+	else return false;
 
 }
 
 void CoffeBoxClass::cookingCoffee()
 {
-    cout << "Cooking" << endl << "|";
-    for (int i = 0; i < 10; i++) {
-        cout << '*';
+	cout << "Cooking" << endl << "|";
+	for (int i = 0; i < 10; i++) {
+		cout << '*';
 
-        Sleep(500);
-    }
-    cout << "|" << endl << "Complite" << endl;
+		Sleep(500);
+	}
+	cout << "|" << endl << "Complite" << endl;
 
-    Sleep(3000);
+	Sleep(3000);
 }
 
 void CoffeBoxClass::buyCoffee(double priceCoffee, string typeCoffee)
 {
-    if (moneyClient < priceCoffee) {
-        bool isYouWantUpYourBalance = false;
+	if (moneyClient < priceCoffee) {
+		bool isYouWantUpYourBalance = false;
 
-        cout << "You don't have enough money to buy an " << typeCoffee << ',' << endl << " maybe you want to top up your balance? " << endl << "enter 1 or 0: ";
-        cin >> isYouWantUpYourBalance;
+		cout << "You don't have enough money to buy an " << typeCoffee << ',' << endl << " maybe you want to top up your balance? " << endl << "enter 1 or 0: ";
+		cin >> isYouWantUpYourBalance;
 
-        if (isYouWantUpYourBalance) {
-            cin.clear();
-            fflush(stdin);
+		if (isYouWantUpYourBalance) {
+			cin.clear();
+			fflush(stdin);
 
-            depositMoney();
-            buyCoffee(priceCoffee, typeCoffee);
-        }
-        else {
-            cin.clear();
-            fflush(stdin);
-        }
-    }
-    else {
-        moneyClient -= priceCoffee;
-        if (numberCups > 0) numberCups--;
+			depositMoney();
+			buyCoffee(priceCoffee, typeCoffee);
+		}
+		else {
+			cin.clear();
+			fflush(stdin);
+		}
+	}
+	else {
+		moneyClient -= priceCoffee;
+		if (numberCups > 0) numberCups--;
 
-        cookingCoffee();
+		cookingCoffee();
 
-        clearConsole();
-    }
+		clearConsole();
+	}
 }
 
 //Vlad
 
 void CoffeBoxClass::managingTheService()
 {
-    cout << "1. Enter the code." << endl;
-    cout << "0. Exit the menu." << endl;
+	cout << "1. Enter the code." << endl;
+	cout << "0. Exit the menu." << endl;
 
-    switch ((int)enterData()) {
-    case 1:
-        verificationServise();
-        break;
+	switch ((int)enterData()) {
+	case 1:
+		verificationServise();
+		break;
 
-    case 0:
-        break;
+	case 0:
+		break;
 
-    default:
-        managingTheService();
-        break;
-    }
+	default:
+		managingTheService();
+		break;
+	}
 }
 
 bool CoffeBoxClass::isTruePassword(double number)
 {
-    if ((int)number == PIN)
-    {
-        return true;
-    }
-    else return false;
+	if ((int)number == PIN)
+	{
+		return true;
+	}
+	else return false;
 }
 
 void CoffeBoxClass::verificationServise()
 {
-    cout << "Please, enter PIN: " << endl;
+	cout << "Please, enter PIN: " << endl;
 
-    if (isTruePassword(enterData()))
-    {
-        attempts = 1;
+	if (isTruePassword(enterData()))
+	{
+		attempts = 1;
 
-        serviseMenu();
-    }
-    else
-    {
-        attempts++;
+		serviseMenu();
+	}
+	else
+	{
+		attempts++;
 
-        cout << "The password is incorrect." << endl << endl;
+		cout << "The password is incorrect." << endl << endl;
 
-        if (attempts > 3) {
-            printMenu();
-            cout << "The device is blocked. Please call in  (+375-(29)-***--)" << endl;
-            isPinTrue = false;
-        }
-        else
-        {
-            managingTheService();
-        }
-    }
+		if (attempts > 3) {
+			printMenu();
+			cout << "The device is blocked. Please call in  (+375-(29)-***--)" << endl;
+			isPinTrue = false;
+		}
+		else
+		{
+			managingTheService();
+		}
+	}
 }
 
 void CoffeBoxClass::serviseMenu()
 {
-    cout << "1. View the balance." << endl;
-    cout << "2. View the number of remaining empty cups." << endl;
-    cout << "3. Withdrawal of revenue." << endl;
-    cout << "0. Exit the menu." << endl;
+	cout << "1. View the balance." << endl;
+	cout << "2. View the number of remaining empty cups." << endl;
+	cout << "3. Withdrawal of revenue." << endl;
+	cout << "0. Exit the menu." << endl;
 
-    moneyCoffeeBox += moneyClient;
-    moneyClient == 0;
+	moneyCoffeeBox += moneyClient;
+	moneyClient == 0;
 
-    switch ((int)enterData()) {
-    case 1:
-        balance();
-        break;
+	switch ((int)enterData()) {
+	case 1:
+		balance();
+		break;
 
-    case 2:
-        cupsEmpty();
-        break;
+	case 2:
+		cupsEmpty();
+		break;
 
-    case 3:
-        serviseMenu();
-        break;
+	case 3:
+		serviseMenu();
+		break;
 
-    case 0:
-        break;
+	case 0:
+		break;
 
-    default:
-        serviseMenu();
-        break;
-    }
+	default:
+		serviseMenu();
+		break;
+	}
 }
 
 void CoffeBoxClass::balance()
 {
-    cout << "Balance: " << moneyCoffeeBox << endl;
-    cout << "0. Back." << endl;
+	cout << "Balance: " << moneyCoffeeBox << endl;
+	cout << "0. Back." << endl;
 
-    switch ((int)enterData())
-    {
-    case 0: {  // Back
-        serviseMenu();
-        break;
-    }
-    default:
-        cupsEmpty();
-        break;
-    }
+	switch ((int)enterData())
+	{
+	case 0: {  // Back
+		serviseMenu();
+		break;
+	}
+	default:
+		cupsEmpty();
+		break;
+	}
 }
 
 void CoffeBoxClass::cupsEmpty()
 {
-    cout << "Empty cups: " << numberCups << endl;
-    cout << "1. Top up." << endl;
-    cout << "0. Back." << endl;
+	cout << "Empty cups: " << numberCups << endl;
+	cout << "1. Top up." << endl;
+	cout << "0. Back." << endl;
 
-    switch ((int)enterData())
-    {
-    case 0:
-    {
-        serviseMenu();
-        break;
-    }
-    case 1:
-    {
-        if (numberCups == 700) // Cheak MAX
-        {
-            cout << "No top-up required." << endl << endl;
-        }
-        else
-        {
-            cout << "Quantity:" << endl;
+	switch ((int)enterData())
+	{
+	case 0:
+	{
+		serviseMenu();
+		break;
+	}
+	case 1:
+	{
+		if (numberCups == 700) // Cheak MAX
+		{
+			cout << "No top-up required." << endl << endl;
+		}
+		else
+		{
+			cout << "Quantity:" << endl;
 
-            numberCups += enterData();
+			numberCups += enterData();
 
-            if (numberCups > 700) // Cheak MAX
-            {
-                cout << "The quantity is overflowing. Maximum of 700." << endl << endl;
+			if (numberCups > 700) // Cheak MAX
+			{
+				cout << "The quantity is overflowing. Maximum of 700." << endl << endl;
 
-                numberCups = 700;
-            }
-        }
-    }
-    default:
-        cupsEmpty();
-        break;
-    }
+				numberCups = 700;
+			}
+		}
+	}
+	default:
+		cupsEmpty();
+		break;
+	}
 }
