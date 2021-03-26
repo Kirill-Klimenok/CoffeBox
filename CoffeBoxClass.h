@@ -24,6 +24,8 @@ private:
 	void selectingAnAction(double number);
 	void depositMoney();
 	void buyCoffee(double priceCoffee, string typeCoffee);
+	void clearConsole();
+	void cookingCoffee();
 	//vlad
 	void managingTheService();
 	bool isTruePassword(double number);

@@ -12,6 +12,11 @@ void CoffeBoxClass::start()
     cout << "The device is blocked. Please call in  (+375-(29)-***--)" << endl;
 }
 
+void CoffeBoxClass::clearConsole() {
+    system("CLS");
+}
+
+
 
 void CoffeBoxClass::printMenu()
 {
@@ -47,21 +52,21 @@ void CoffeBoxClass::selectingAnAction(double number)
     case 1: {
         depositMoney();
 
-        system("CLS");
+        clearConsole();
 
         break;
     }
     case 2: {
         buyCoffee(ESPRESSO_PRICE, "espresso");
 
-        system("CLS");
+        clearConsole();
 
         break;
     }
     case 3: {
         buyCoffee(CAPPUCCINO_PRICE, "cappuccino");
 
-        system("CLS");
+        clearConsole();
 
         break;
     }
@@ -69,14 +74,14 @@ void CoffeBoxClass::selectingAnAction(double number)
 
         buyCoffee(LATTE_PRICE, "latte");
 
-        system("CLS");
+        clearConsole();
 
         break;
     }
     case 5: {
         managingTheService();
 
-        system("CLS");
+        clearConsole();
 
         break;
     }
@@ -99,6 +104,19 @@ void CoffeBoxClass::depositMoney()
         moneyClient += money;
         moneyCoffeeBox += money;
     }
+}
+
+void CoffeBoxClass::cookingCoffee()
+{
+    cout << "Cooking" << endl << "|";
+    for (int i = 0; i < 10; i++) {
+        cout << '*';
+
+        Sleep(500);
+    }
+    cout << "|" << endl << "Complite" << endl;
+
+    Sleep(3000);
 }
 
 void CoffeBoxClass::buyCoffee(double priceCoffee, string typeCoffee)
@@ -125,16 +143,7 @@ void CoffeBoxClass::buyCoffee(double priceCoffee, string typeCoffee)
         moneyClient -= priceCoffee;
         if (numberCups > 0) numberCups--;
 
-        cout << "Cooking" << endl << "|";
-        for (int i = 0; i < 10; i++) {
-            cout << '*';
-
-            Sleep(500);
-        }
-        cout << "|" << endl << "Complite" << endl;
-
-        Sleep(3000);
-        system("CLS");
+        clearConsole();
     }
 }
 
