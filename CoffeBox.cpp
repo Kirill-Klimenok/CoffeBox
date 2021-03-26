@@ -2,6 +2,8 @@
 
 int main()
 {
- 
+    CoffeBoxClass coffeeBox;
+    coffeeBox.start();
+
     return 0;
 }
