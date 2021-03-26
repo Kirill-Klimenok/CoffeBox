@@ -97,13 +97,21 @@ void CoffeBoxClass::depositMoney()
     cout << "How much money do you want to put on the balance: ";
     cin >> money;
 
-    if (money < 0.5 || money > 500) {
+    if (!isTrueMoney(money)) {
         cout << "Error!" << endl << "You have invested a coin of less than 50 kopecks or this bill does not exist" << endl;
     }
     else {
         moneyClient += money;
         moneyCoffeeBox += money;
     }
+}
+
+bool CoffeBoxClass::isTrueMoney(double money)
+{
+    if (money < 0) return false;
+    else if (money == 0.5 || money == 1 || money == 2 || money == 5 || money == 10 || money == 20 || money == 50 || money == 100 || money == 200 || money == 500) return true;
+    else return false;
+
 }
 
 void CoffeBoxClass::cookingCoffee()
@@ -143,9 +151,13 @@ void CoffeBoxClass::buyCoffee(double priceCoffee, string typeCoffee)
         moneyClient -= priceCoffee;
         if (numberCups > 0) numberCups--;
 
+        cookingCoffee();
+
         clearConsole();
     }
 }
+
+//Vlad
 
 void CoffeBoxClass::managingTheService()
 {

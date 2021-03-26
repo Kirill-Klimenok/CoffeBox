@@ -26,6 +26,7 @@ private:
 	void buyCoffee(double priceCoffee, string typeCoffee);
 	void clearConsole();
 	void cookingCoffee();
+	bool isTrueMoney(double money);
 	//vlad
 	void managingTheService();
 	bool isTruePassword(double number);
