@@ -14,7 +14,7 @@ private:
 	const double LATTE_PRICE = 2.5;
 	double moneyClient = 0;
 	double moneyCoffeeBox = 0;
-	int numberCups = 1;
+	int numberCups = 7;
 	bool isPinTrue = true;
 
 	int attempts = 1;//Vlad
