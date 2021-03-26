@@ -22,10 +22,10 @@ void CoffeBoxClass::printMenu()
 {
 	string menu[] = { "1. Deposit money","2. Espresso - ", "3. Cappuccino - ", "4. Latte - ", "5. Service" };
 
-	cout << "Your balance: " << moneyClient << endl << endl;
-
 	if (numberCups < 10 && numberCups > 0) cout << "there are " << numberCups << " cups left" << endl << endl;
-	if (numberCups < 0) cout << "\tWorrning !!!!"<<endl<<"\tNo cups!";
+	if (numberCups == 0) cout << "Warning !" << endl << "No cups!" << endl << endl;
+
+	cout << "Your balance: " << moneyClient << endl << endl;
 
 	for (int i = 0; i < size(menu); i++) {
 		cout << menu[i] << endl << endl;
@@ -117,14 +117,15 @@ bool CoffeBoxClass::isTrueMoney(double money)
 
 void CoffeBoxClass::cookingCoffee()
 {
-	cout << "Cooking" << endl << "|";
-	for (int i = 0; i < 10; i++) {
-		cout << '*';
+	if (numberCups > 0) {
+		cout << "Cooking" << endl << "|";
+		for (int i = 0; i < 10; i++) {
+			cout << '*';
 
-		Sleep(500);
-	}
-	cout << "|" << endl << "Complite" << endl;
-
+			Sleep(500);
+		}
+		cout << "|" << endl << "Complite" << endl;
+	}	else;
 	Sleep(3000);
 }
 
