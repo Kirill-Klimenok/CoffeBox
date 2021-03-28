@@ -40,7 +40,6 @@ private:
 	void printCupsEmpty();
 	void cupsEmptyTopUp();
 	void TopUp(int cups);
-	void printLockdown();
 
 public:
 	void start();
