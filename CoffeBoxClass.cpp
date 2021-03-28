@@ -28,7 +28,7 @@ void CoffeBoxClass::printMenu()
 
 	for (int i = 0; i < size(menu); i++) {
 		cout << menu[i];
-		if (i >= 1 && i < 4) cout <<price[i - 1];
+		if (i >= 1 && i < 4) cout <<price[i - 1] <<" BYN";
 		cout << endl << endl;
 	}
 }
