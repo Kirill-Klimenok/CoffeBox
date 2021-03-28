@@ -9,11 +9,11 @@ class CoffeBoxClass
 {
 private:
 	const int PIN = 1111;
-	const int ESPRESSO_PRICE = 2;
-	const int CAPPUCCINO_PRICE = 3;
+	const int ESPRESSO_PRICE = 2.0;
+	const int CAPPUCCINO_PRICE = 3.0;
 	const double LATTE_PRICE = 2.5;
-	double moneyClient = 0;
-	double moneyCoffeeBox = 0;
+	double moneyClient = 0.0;
+	double moneyCoffeeBox = 0.0;
 	int numberCups = 7;
 	bool isPinTrue = true;
 
@@ -30,10 +30,16 @@ private:
 	//vlad
 	void managingTheService();
 	bool isTruePassword(double number);
-	void verificationServise();//I
+	void verificationServise();
 	void serviseMenu();
+	void printServiseMenu();
 	void balance();
+	void printBalance();
 	void cupsEmpty();
+	void printCupsEmpty();
+	void cupsEmptyTopUp();
+	void TopUp(int cups);
+	void printLockdown();
 
 public:
 	void start();

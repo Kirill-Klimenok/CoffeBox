@@ -9,14 +9,12 @@ void CoffeBoxClass::start()
 		selectingAnAction(enterData());
 	}
 
-	cout << "The device is blocked. Please call in  (+375-(29)-***--)" << endl;
+	printLockdown();
 }
 
 void CoffeBoxClass::clearConsole() {
 	system("CLS");
 }
-
-
 
 void CoffeBoxClass::printMenu()
 {
@@ -79,6 +77,8 @@ void CoffeBoxClass::selectingAnAction(double number)
 		break;
 	}
 	case 5: {
+		clearConsole();
+
 		managingTheService();
 
 		clearConsole();
@@ -86,6 +86,7 @@ void CoffeBoxClass::selectingAnAction(double number)
 		break;
 	}
 	default:
+		clearConsole();
 		break;
 	}
 }
@@ -159,7 +160,6 @@ void CoffeBoxClass::buyCoffee(double priceCoffee, string typeCoffee)
 	}
 }
 
-//Vlad
 
 void CoffeBoxClass::managingTheService()
 {
@@ -175,8 +175,37 @@ void CoffeBoxClass::managingTheService()
 		break;
 
 	default:
+		clearConsole();
 		managingTheService();
 		break;
+	}
+}
+
+void CoffeBoxClass::verificationServise()
+{
+	cout << "Please, enter PIN: " << endl;
+
+	if (isTruePassword(enterData()))
+	{
+		attempts = 1;
+
+		system("color 2");
+		serviseMenu();
+	}
+	else
+	{
+		attempts++;
+
+		clearConsole();
+		cout << "The password is incorrect." << endl << endl;
+
+		if (attempts > 3) {			
+			isPinTrue = false;
+		}
+		else
+		{
+			managingTheService();
+		}
 	}
 }
 
@@ -189,43 +218,9 @@ bool CoffeBoxClass::isTruePassword(double number)
 	else return false;
 }
 
-void CoffeBoxClass::verificationServise()
-{
-	cout << "Please, enter PIN: " << endl;
-
-	if (isTruePassword(enterData()))
-	{
-		attempts = 1;
-
-		serviseMenu();
-	}
-	else
-	{
-		attempts++;
-
-		cout << "The password is incorrect." << endl << endl;
-
-		if (attempts > 3) {
-			printMenu();
-			cout << "The device is blocked. Please call in  (+375-(29)-***--)" << endl;
-			isPinTrue = false;
-		}
-		else
-		{
-			managingTheService();
-		}
-	}
-}
-
 void CoffeBoxClass::serviseMenu()
 {
-	cout << "1. View the balance." << endl;
-	cout << "2. View the number of remaining empty cups." << endl;
-	cout << "3. Withdrawal of revenue." << endl;
-	cout << "0. Exit the menu." << endl;
-
-	moneyCoffeeBox += moneyClient;
-	moneyClient == 0;
+	printServiseMenu();
 
 	switch ((int)enterData()) {
 	case 1:
@@ -233,44 +228,64 @@ void CoffeBoxClass::serviseMenu()
 		break;
 
 	case 2:
+		clearConsole();
 		cupsEmpty();
 		break;
 
 	case 3:
+		moneyCoffeeBox = 0;
 		serviseMenu();
 		break;
 
 	case 0:
+		moneyClient = 0;
+		system("color 7");
 		break;
 
 	default:
 		serviseMenu();
 		break;
 	}
+}
+
+void CoffeBoxClass::printServiseMenu()
+{	
+	clearConsole();
+
+	cout << "1. View the balance." << endl;
+	cout << "2. View the number of remaining empty cups." << endl;
+	cout << "3. Withdrawal of revenue." << endl;
+	cout << "0. Exit the menu." << endl;
 }
 
 void CoffeBoxClass::balance()
 {
-	cout << "Balance: " << moneyCoffeeBox << endl;
-	cout << "0. Back." << endl;
+	printBalance();
 
 	switch ((int)enterData())
 	{
-	case 0: {  // Back
+	case 0: 
+	{
 		serviseMenu();
 		break;
 	}
 	default:
-		cupsEmpty();
+		balance();
 		break;
 	}
 }
 
+void CoffeBoxClass::printBalance()
+{
+	clearConsole();
+
+	cout << "Balance: " << moneyCoffeeBox << " $." << endl;
+	cout << "0. Back." << endl;
+}
+
 void CoffeBoxClass::cupsEmpty()
 {
-	cout << "Empty cups: " << numberCups << endl;
-	cout << "1. Top up." << endl;
-	cout << "0. Back." << endl;
+	printCupsEmpty();
 
 	switch ((int)enterData())
 	{
@@ -281,26 +296,65 @@ void CoffeBoxClass::cupsEmpty()
 	}
 	case 1:
 	{
-		if (numberCups == 700) // Cheak MAX
-		{
-			cout << "No top-up required." << endl << endl;
-		}
-		else
-		{
-			cout << "Quantity:" << endl;
-
-			numberCups += enterData();
-
-			if (numberCups > 700) // Cheak MAX
-			{
-				cout << "The quantity is overflowing. Maximum of 700." << endl << endl;
-
-				numberCups = 700;
-			}
-		}
-	}
-	default:
+		cupsEmptyTopUp();
 		cupsEmpty();
 		break;
 	}
+	default:
+		clearConsole();
+		cupsEmpty();
+		break;
+	}
+}
+
+void CoffeBoxClass::printCupsEmpty()
+{
+	cout << "Empty cups: " << numberCups << "." << endl;
+	cout << "1. Top up." << endl;
+	cout << "0. Back." << endl;
+}
+
+void CoffeBoxClass::cupsEmptyTopUp()
+{
+	if (numberCups == 700)
+	{
+		clearConsole();
+		cout << "No top-up required." << endl << endl;
+	}
+	else
+	{
+		cout << "Quantity:" << endl;
+		int cups = enterData();
+
+		TopUp(cups);
+	}
+}
+
+void CoffeBoxClass::TopUp(int cups)
+{
+	if (cups < 0)
+	{
+		clearConsole();
+		cout << "You can't take the cups away!" << endl << endl;
+	} 
+	else
+	{
+		numberCups += cups;
+
+		clearConsole();
+
+		if (numberCups > 700)
+		{
+			cout << "You can't have more than 700 cups." << endl << "No top - up required." << endl << endl;
+
+			numberCups = 700;
+		} 
+		else {}
+	}
+}
+
+void CoffeBoxClass::printLockdown()
+{
+	system("color 4");
+	cout << "The device is blocked." << endl << "The PIN-code was entered incorrectly 3 times." << endl << "Please call in (+375-(**)-***-**-**)" << endl;
 }
