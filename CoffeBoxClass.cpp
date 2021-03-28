@@ -172,18 +172,22 @@ void CoffeBoxClass::printException(int number) {
 	case 1:
 	{
 		cout << "The device is blocked. Please call in  (+375-(29)-***--)" << endl;
+		break;
 	}
 	case 2:
 	{
 		cout << "Error!" << endl << "You have invested a coin of less than 50 kopecks or this bill does not exist" << endl;
+		break;
 	}
 	case 3:
 	{
 		cout << "You don't have enough money to buy coffee" << ',' << endl << " maybe you want to top up your balance? " << endl << "enter 1 or 0: ";
+		break;
 	}
 	case 4:
 	{
 		cout << "Warning !" << endl << "No cups!" << endl << endl;
+		break;
 	}
 	default:
 		break;
