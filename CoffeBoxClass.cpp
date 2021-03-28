@@ -24,7 +24,7 @@ void CoffeBoxClass::printMenu()
 	if (numberCups < 10 && numberCups > 0) cout << "there are " << numberCups << " cups left" << endl << endl;
 	if (numberCups == 0) printException(4);
 
-	cout << "Your balance: " << moneyClient << " BYN" << endl << endl;
+	cout << "Your balance: " << moneyClient << "BYN" << endl << endl;
 
 	for (int i = 0; i < size(menu); i++) {
 		cout << menu[i];
@@ -315,7 +315,7 @@ void CoffeBoxClass::printBalance()
 {
 	clearConsole();
 
-	cout << "Balance: " << moneyCoffeeBox << " $." << endl;
+	cout << "Balance: " << moneyCoffeeBox << " BYN." << endl;
 	cout << "0. Back." << endl;
 }
 
