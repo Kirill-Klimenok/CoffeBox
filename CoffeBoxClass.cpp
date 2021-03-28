@@ -171,7 +171,8 @@ void CoffeBoxClass::printException(int number) {
 	{
 	case 1:
 	{
-		cout << "The device is blocked. Please call in  (+375-(29)-***--)" << endl;
+		system("color 4");
+		cout << "The device is blocked." << endl << "The PIN-code was entered incorrectly 3 times." << endl << "Please call in (+375-(**)-***-**-**)" << endl;
 		break;
 	}
 	case 2:
@@ -386,10 +387,4 @@ void CoffeBoxClass::TopUp(int cups)
 		} 
 		else {}
 	}
-}
-
-void CoffeBoxClass::printLockdown()
-{
-	system("color 4");
-	cout << "The device is blocked." << endl << "The PIN-code was entered incorrectly 3 times." << endl << "Please call in (+375-(**)-***-**-**)" << endl;
 }
