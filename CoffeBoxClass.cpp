@@ -9,26 +9,27 @@ void CoffeBoxClass::start()
 		selectingAnAction(enterData());
 	}
 
-	cout << "The device is blocked. Please call in  (+375-(29)-***--)" << endl;
+	printException(1);
 }
 
 void CoffeBoxClass::clearConsole() {
 	system("CLS");
 }
 
-
-
 void CoffeBoxClass::printMenu()
 {
 	string menu[] = { "1. Deposit money","2. Espresso - ", "3. Cappuccino - ", "4. Latte - ", "5. Service" };
+	double price[] = { ESPRESSO_PRICE, CAPPUCCINO_PRICE, LATTE_PRICE };
 
 	if (numberCups < 10 && numberCups > 0) cout << "there are " << numberCups << " cups left" << endl << endl;
-	if (numberCups == 0) cout << "Warning !" << endl << "No cups!" << endl << endl;
+	if (numberCups == 0) printException(4);
 
 	cout << "Your balance: " << moneyClient << endl << endl;
 
 	for (int i = 0; i < size(menu); i++) {
-		cout << menu[i] << endl << endl;
+		cout << menu[i];
+		if (i >= 1 && i < 4) cout <<price[i - 1];
+		cout << endl << endl;
 	}
 }
 
@@ -57,14 +58,14 @@ void CoffeBoxClass::selectingAnAction(double number)
 		break;
 	}
 	case 2: {
-		buyCoffee(ESPRESSO_PRICE, "espresso");
+		buyCoffee(ESPRESSO_PRICE);
 
 		clearConsole();
 
 		break;
 	}
 	case 3: {
-		buyCoffee(CAPPUCCINO_PRICE, "cappuccino");
+		buyCoffee(CAPPUCCINO_PRICE);
 
 		clearConsole();
 
@@ -72,7 +73,7 @@ void CoffeBoxClass::selectingAnAction(double number)
 	}
 	case 4: {
 
-		buyCoffee(LATTE_PRICE, "latte");
+		buyCoffee(LATTE_PRICE);
 
 		clearConsole();
 
@@ -98,7 +99,8 @@ void CoffeBoxClass::depositMoney()
 	cin >> money;
 
 	if (!isTrueMoney(money)) {
-		cout << "Error!" << endl << "You have invested a coin of less than 50 kopecks or this bill does not exist" << endl;
+		printException(2);
+
 		Sleep(2000);
 	}
 	else {
@@ -125,16 +127,18 @@ void CoffeBoxClass::cookingCoffee()
 			Sleep(500);
 		}
 		cout << "|" << endl << "Complite" << endl;
-	}	else;
+	}
+	else;
 	Sleep(3000);
 }
 
-void CoffeBoxClass::buyCoffee(double priceCoffee, string typeCoffee)
+void CoffeBoxClass::buyCoffee(double priceCoffee)
 {
 	if (moneyClient < priceCoffee) {
 		bool isYouWantUpYourBalance = false;
 
-		cout << "You don't have enough money to buy an " << typeCoffee << ',' << endl << " maybe you want to top up your balance? " << endl << "enter 1 or 0: ";
+		printException(3);
+
 		cin >> isYouWantUpYourBalance;
 
 		if (isYouWantUpYourBalance) {
@@ -142,7 +146,7 @@ void CoffeBoxClass::buyCoffee(double priceCoffee, string typeCoffee)
 			fflush(stdin);
 
 			depositMoney();
-			buyCoffee(priceCoffee, typeCoffee);
+			buyCoffee(priceCoffee);
 		}
 		else {
 			cin.clear();
@@ -156,6 +160,30 @@ void CoffeBoxClass::buyCoffee(double priceCoffee, string typeCoffee)
 		cookingCoffee();
 
 		clearConsole();
+	}
+}
+
+void CoffeBoxClass::printException(int number) {
+	switch (number)
+	{
+	case 1:
+	{
+		cout << "The device is blocked. Please call in  (+375-(29)-***--)" << endl;
+	}
+	case 2:
+	{
+		cout << "Error!" << endl << "You have invested a coin of less than 50 kopecks or this bill does not exist" << endl;
+	}
+	case 3:
+	{
+		cout << "You don't have enough money to buy coffee" << ',' << endl << " maybe you want to top up your balance? " << endl << "enter 1 or 0: ";
+	}
+	case 4:
+	{
+		cout << "Warning !" << endl << "No cups!" << endl << endl;
+	}
+	default:
+		break;
 	}
 }
 

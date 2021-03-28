@@ -23,10 +23,11 @@ private:
 	double enterData();
 	void selectingAnAction(double number);
 	void depositMoney();
-	void buyCoffee(double priceCoffee, string typeCoffee);
+	void buyCoffee(double priceCoffee);
 	void clearConsole();
 	void cookingCoffee();
 	bool isTrueMoney(double money);
+	void printException(int number);
 	//vlad
 	void managingTheService();
 	bool isTruePassword(double number);
