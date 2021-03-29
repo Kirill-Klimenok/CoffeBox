@@ -8,7 +8,7 @@ using namespace std;
 class CoffeBoxClass
 {
 private:
-	const int PIN = 1111;
+	const int PIN = 9112;
 	const int ESPRESSO_PRICE = 2.0;
 	const int CAPPUCCINO_PRICE = 3.0;
 	const double LATTE_PRICE = 2.5;
@@ -16,8 +16,7 @@ private:
 	double moneyCoffeeBox = 0.0;
 	int numberCups = 7;
 	bool isPinTrue = true;
-
-	int attempts = 1;//Vlad
+	int attempts = 1;
 
 	void printMenu();
 	double enterData();
