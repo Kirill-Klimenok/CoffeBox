@@ -21,7 +21,6 @@ void CoffeBoxClass::printMenu()
 	string menu[] = { "1. Deposit money","2. Espresso - ", "3. Cappuccino - ", "4. Latte - ", "5. Service" };
 	double price[] = { ESPRESSO_PRICE, CAPPUCCINO_PRICE, LATTE_PRICE };
 
-	if (numberCups < 10 && numberCups > 0) cout << "there are " << numberCups << " cups left" << endl << endl;
 	if (numberCups == 0) printException(4);
 
 	cout << "Your balance: " << moneyClient << " BYN" << endl << endl;
