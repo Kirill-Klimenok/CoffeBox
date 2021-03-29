@@ -28,7 +28,7 @@ void CoffeBoxClass::printMenu()
 
 	for (int i = 0; i < size(menu); i++) {
 		cout << menu[i];
-		if (i >= 1 && i < 4) cout <<price[i - 1] <<" BYN";
+		if (i >= 1 && i < 4) cout << price[i - 1] << " BYN";
 		cout << endl << endl;
 	}
 }
@@ -119,6 +119,8 @@ bool CoffeBoxClass::isTrueMoney(double money)
 	else return false;
 
 }
+
+
 
 void CoffeBoxClass::cookingCoffee()
 {
@@ -235,7 +237,7 @@ void CoffeBoxClass::verificationServise()
 		clearConsole();
 		cout << "The password is incorrect." << endl << endl;
 
-		if (attempts > 3) {			
+		if (attempts > 3) {
 			isPinTrue = false;
 		}
 		else
@@ -285,7 +287,7 @@ void CoffeBoxClass::serviseMenu()
 }
 
 void CoffeBoxClass::printServiseMenu()
-{	
+{
 	clearConsole();
 
 	cout << "1. View the balance." << endl;
@@ -300,7 +302,7 @@ void CoffeBoxClass::balance()
 
 	switch ((int)enterData())
 	{
-	case 0: 
+	case 0:
 	{
 		serviseMenu();
 		break;
@@ -372,7 +374,7 @@ void CoffeBoxClass::TopUp(int cups)
 	{
 		clearConsole();
 		cout << "You can't take the cups away!" << endl << endl;
-	} 
+	}
 	else
 	{
 		numberCups += cups;
@@ -384,7 +386,7 @@ void CoffeBoxClass::TopUp(int cups)
 			cout << "You can't have more than 700 cups." << endl << "No top - up required." << endl << endl;
 
 			numberCups = 700;
-		} 
+		}
 		else {}
 	}
 }
